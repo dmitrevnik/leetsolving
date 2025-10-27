@@ -1,10 +1,20 @@
-class Solution:
-    def numberOfBeams(self, bank: List[str]) -> int:
-        ans=0
-        prev=0
-        for row in bank:
-            dev=row.count('1')
-            if dev>0:
-                ans+=dev*prev
-                prev=dev
-        return ans
+/**
+ * @param {string[]} bank
+ * @return {number}
+ */
+var numberOfBeams = function(bank) {
+    let ans = 0;
+    let prev = 0;
+    
+    for (const row of bank) {
+        let cnt = 0;
+        for (let i = 0; i < row.length; ++i) {
+            if (row[i] === '1') cnt++;
+        }
+        if (cnt > 0) {
+            ans += prev * cnt;
+            prev = cnt;
+        }
+    }
+    return ans;
+};
